@@ -1,6 +1,7 @@
 package com.moringaschool.notekeeper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
         NoteInfo note = mNotes.get(position);
         holder.mTextCourse.setText(note.getCourse().getTitle());
         holder.mTextTitle.setText(note.getTitle());
+        holder.mCurrentPosition = holder.getAdapterPosition();
     }
 
     @Override
@@ -45,11 +47,18 @@ public class NoteRecyclerAdapter extends RecyclerView.Adapter<NoteRecyclerAdapte
 
         public final TextView mTextCourse;
         public final TextView mTextTitle;
+        public int mCurrentPosition;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mTextCourse = itemView.findViewById(R.id.text_course);
             mTextTitle = itemView.findViewById(R.id.text_title);
+
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(mContext, NoteActivity.class);
+                intent.putExtra(NoteActivity.NOTE_POSITION, mCurrentPosition);
+                mContext.startActivity(intent);
+            });
         }
     }
 }
