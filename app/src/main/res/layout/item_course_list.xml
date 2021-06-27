@@ -39,7 +39,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_course"
                 app:srcCompat="@drawable/ic_menu_slideshow"
-                app:tint="#FF9800" />
+                app:tint="@color/pluralsight_orange" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
